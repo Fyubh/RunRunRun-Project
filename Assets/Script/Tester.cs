@@ -18,6 +18,7 @@ namespace RunRunRun.Architecture
 
         private void Update()
         {
+            /* DEBUG
             if (Input.GetKeyDown(KeyCode.A))
             {
                 this.interactor.AddCoins(this, 5);
@@ -29,6 +30,7 @@ namespace RunRunRun.Architecture
                 this.interactor.SpendCoin(this, 2);
                 Debug.Log($"Bank balance spent, current = {this.repository.coins}");
             }
+            */
         }
     }
 
