@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         enemy = new TestEnemy(maxHealth);
+
+        Destroy(gameObject, 20);
     }
 
     public void GetDamage(object sender, int damage)
