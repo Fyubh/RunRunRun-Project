@@ -5,6 +5,11 @@
 
     public int increaseDamage { get; set; }
 
+    public TestShootableBonus(int bonusHealth)
+    {
+        this.health = bonusHealth;
+    }
+
     public override void GetDamage(object sender, int damage)
     {
         if (!IsDied())
@@ -15,9 +20,8 @@
 
     public override bool IsDied() => health <= 0;
 
-    public void IncreaseDamge(object sender,  player)
+    public void IncreaseDamge(object sender,  Gun gun)
     {
-        player.
+        gun.IncreaseDamage(this, 100);
     }
 }
-

@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    [SerializeField] public float bulletSpeed = 10f;
-    [SerializeField] public int timer = 5;
-    [SerializeField] public int damage = 0;
+    Gun gun;
+    [SerializeField] public float bulletSpeed => gun.bulletSpeed;
+    [SerializeField] public int timer => gun.timer;
+    [SerializeField] public int damage => gun.damage;
 
     private void Start()
     {
+        gun = new TestGun();
         Destroy(gameObject, timer);
     }
 
@@ -22,6 +24,20 @@ public class BulletController : MonoBehaviour
         {
             other.gameObject.GetComponent<EnemyController>().GetDamage(this, damage);
             other.gameObject.GetComponent<EnemyController>().IsKilled();
+
+            Destroy(gameObject);
+
+            // DEBUG
+            Debug.Log($"Health of {other.gameObject.name} is {other.gameObject.GetComponent<EnemyController>().GetHealth()}");
+        }
+
+        else if (other.gameObject.CompareTag("Bonus"))
+        {
+            other.gameObject.GetComponent<BonusController>().GetDamage(this, damage);
+            if (other.gameObject.GetComponent<BonusController>().IsKilled())
+            {
+                Debug.Log("Bonus claimed");
+            }
 
             Destroy(gameObject);
 
